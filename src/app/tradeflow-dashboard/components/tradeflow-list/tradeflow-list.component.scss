@@ -1,0 +1,66 @@
+.tradeflow-list {
+
+  .img {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 10px;
+  }
+
+  li {
+    width: 20em;
+    height: 10em;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 1em;
+    background: dodgerblue;
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
+  }
+
+  li::before{
+    content: '';
+    position: absolute;
+    top: 5em;
+    left: -4em;
+    width: 4em;
+    height: .2em;
+    background: dodgerblue;
+    z-index: -1;
+  }
+  li:first-child::before {
+    display: none;
+  }
+
+  .active {
+    background: dodgerblue;
+  }
+
+  .active ~ li {
+    background: lightblue;
+  }
+
+  li:hover {
+    background: #87AFC7;
+  }
+  h3{
+    margin-left: 10px;
+  }
+  .flow{
+    float : center;
+  }
+ .search{
+  background : dodgerblue;
+  height:100px;
+  color : white;
+}
+  .searchbox{
+    float: left;
+    margin-left: 30%;
+    margin-top: 10px;
+
+  }
+
+}

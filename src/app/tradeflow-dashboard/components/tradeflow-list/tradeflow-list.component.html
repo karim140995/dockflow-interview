@@ -1,0 +1,68 @@
+<div class="tradeflow-list">
+  <div class="search">
+    <form class="form-inline">
+      <div class="searchbox">
+          Departure date :
+          <input (change)="searchChange($event)" class="form-control mb-2 mr-sm-2" type="date" name="departure_date" id="departure_date" placeholder="Departure date">
+          Arrival date :
+          <input (change)="searchChange($event)" class="form-control mb-2 mr-sm-2" type="date" name="arrival_date" id="arrival_date">
+      </div>
+    </form >
+
+  </div>
+  <div class="list">
+      <div class="flow">
+              <table class="table arrowTable">
+                     <tbody  >
+                         <ng-container *ngFor="let tradeflow of tradeflows">
+                           <h3>{{tradeflow.name}} <i class="fa fa-ship" aria-hidden="true"></i></h3>
+                           <ul *ngFor="let sea_shipment of tradeflow.sea_shipments">
+                             <div class="row">
+                               <div class="col">
+
+                                <ng-container *ngFor="let sea_movement of sea_shipment.sea_movements" >
+                                        <li>
+                                          <small>Pick up location</small> :
+                                          {{sea_movement.vessel_telo_loading.location.raw_location.un_name}} <img src="https://www.countryflags.io/{{sea_movement.vessel_telo_loading.location.raw_location.un_country}}/flat/64.png"><br>
+                                          <small>Departure date</small> :
+                                                   <ng-container *ngFor="let reading of sea_movement.vessel_telo_loading.readings">
+                                                         <ng-container *ngIf="reading.type === 'departure'">
+                                                                {{reading.reading}}
+                                                        </ng-container>
+                                                   </ng-container> <br>
+                                           <small>Carrier </small> <i class="fa fa-ship" aria-hidden="true"></i> : {{sea_shipment.carrier.name}} <br>
+                                           <small>BL </small> <i class="fa fa-file-text" aria-hidden="true"></i> : {{sea_shipment.bill_of_lading_reference}} <br>
+                                           <small>Booking Reference </small> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> :  {{sea_shipment.booking_reference}} <br>
+
+
+                                       </li>
+                                        <li>
+                                          <small>Drop off location</small> :
+                                          {{sea_movement.vessel_telo_discharge.location.raw_location.un_name}}<img src="https://www.countryflags.io/{{sea_movement.vessel_telo_discharge.location.raw_location.un_country}}/flat/64.png"><br>
+                                          <small>Arrival date</small> :
+                                                   <ng-container *ngFor="let reading of sea_movement.vessel_telo_discharge.readings">
+                                                         <ng-container *ngIf="reading.type === 'arrival'">
+                                                                {{reading.reading}}
+                                                        </ng-container>
+                                                   </ng-container> <br>
+                                          <small>Carrier </small> <i class="fa fa-ship" aria-hidden="true"></i> : {{sea_shipment.carrier.name}} <br>
+                                          <small>BL </small> <i class="fa fa-file-text" aria-hidden="true"></i> : {{sea_shipment.bill_of_lading_reference}} <br>
+                                          <small>Booking Reference </small> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> :  {{sea_shipment.booking_reference}} <br>
+
+
+                                         </li>
+                                    </ng-container>
+                                </div>
+
+                              </div>
+                          </ul>
+                        </ng-container>
+                     </tbody>
+             </table>
+      </div>
+
+
+
+    </div>
+
+  </div>
